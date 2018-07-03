@@ -1,0 +1,17 @@
+<package>
+  <description brief="p3dx_teleop">
+
+     p3dx_teleop. Trying to combine ROS and ARIA to teleoperate a
+     robo in MobileSim
+
+  </description>
+  <author>Marina Malone</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url></url>
+  <depend package="roscpp"/>
+  <depend package="geometry_msgs"/>
+
+</package>
+
+
