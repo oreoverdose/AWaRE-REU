@@ -7,9 +7,11 @@
  
  void chatterCallback(const boost::shared_ptr<geometry_msgs::Twist const>& msg)
  {
-   ROS_INFO("Received %f %f %f %f %f %f", msg->linear.x, msg->linear.y, msg->linear.z, msg->angular.x, msg->angular.y, msg->angular.z);
-   robot.setVel(msg->linear.x);
-   robot.setRotVel(msg->angular.z);
+   //ROS_INFO("Received %f %f %f %f %f %f", msg->linear.x, msg->linear.y, msg->linear.z, msg->angular.x, msg->angular.y, msg->angular.z);
+   //mm/s vs m/s
+   robot.setVel(msg->linear.x*1e3);
+   //deg/s vs rad/s
+   robot.setRotVel(msg->angular.z*180/3.141592);
  }
  
  int main(int argc, char** argv)
