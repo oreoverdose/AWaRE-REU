@@ -1,0 +1,14 @@
+<launch>
+	<!-- Launch ARIAROS -->
+	<node pkg = "aria_controller" type = "aria_ros" name= "aria_ros" output="screen"/>
+	
+	<!-- Launch the input of the system -->
+    <node pkg="itmp_demo" type="system_input.py" name="system_input" output="screen"/>
+    
+    <!-- Launch the output of the system -->
+    <node pkg="itmp_demo" type="system_output_ARIA.py" name="system_output" output="screen"/>
+    
+    <!-- Launch the trajectory of the system -->
+    <node pkg="itmp_demo" type="trajectory.py" name="trajectory" output="screen"/>
+    
+</launch>

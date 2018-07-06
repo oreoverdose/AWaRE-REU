@@ -27,7 +27,7 @@ include_directories(
 )
 
 
-add_executable(sys_out src/listener.cpp)
+add_executable(aria_ros src/listener.cpp)
 
-target_link_libraries(sys_out ${catkin_LIBRARIES} pthread /usr/local/Aria/lib/libAria.so dl rt)
+target_link_libraries(aria_ros ${catkin_LIBRARIES} pthread /usr/local/Aria/lib/libAria.so dl rt)
 
