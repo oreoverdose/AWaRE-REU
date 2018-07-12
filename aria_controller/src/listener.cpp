@@ -68,6 +68,7 @@
   nav_msgs::Odometry odom;
   bool meow = true;
   while(meow){
+  
   	odom.header.stamp = ros::Time::now();
   	odom.header.frame_id = "odom";
   	//set the posiiton

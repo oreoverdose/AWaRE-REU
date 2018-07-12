@@ -28,9 +28,9 @@ def listener():
 	rospy.init_node('listener', anonymous=True)
 	global now
 	now = rospy.get_time()
-	rospy.Subscriber('/Rosaria/odom', Odometry, callback)
+	rospy.Subscriber('/RosAria/pose', Odometry, callback)
 	
-	rospy.Subscriber('/Rosaria/cmd_vel', Twist, callback2)
+	rospy.Subscriber('/RosAria/cmd_vel', Twist, callback2)
 	
 	rospy.spin()
 	
