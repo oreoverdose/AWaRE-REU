@@ -46,7 +46,7 @@ class systemInput:
 		w=0
 		if len(sysMinTraj.data)==2:
 			sysMinTraj = np.array([[sysMinTraj.data[0]],[sysMinTraj.data[1]]])
-			rK = np.array([-0.6613,-1.3266])
+			rK = np.array([-1.3469,-2.1232])
 			alpha = rK.dot(sysMinTraj)
 			thetom1 = np.array([[1, 0.5],[0,1]]).dot(sysMinTraj)
 			print()
