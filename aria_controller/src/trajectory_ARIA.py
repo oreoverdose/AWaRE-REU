@@ -62,7 +62,7 @@ class trajectory:
 			elif self.col_pos >= len(self.traj_matrix[0])-1:
 				cont = True
 				for i in range(2):
-					if not -0.05<output[i]<0.05:
+					if not -0.05<output[i]<0.1:
 						print("~~~error~~~")
 						print(i)
 						cont = False

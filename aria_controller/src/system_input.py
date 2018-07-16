@@ -5,7 +5,7 @@ import rospy
 import numpy as np
 import math
 import tf
-from std_msgs.msg import Float32MultiArray,Bool
+from std_msgs.msg import Float32MultiArray,Bool,Int16
 from geometry_msgs.msg import Twist
 from control_lift import GripperControl
 
@@ -19,24 +19,30 @@ class systemInput:
 		
 		self.cmd_vel_pub = rospy.Publisher("/rosaria/cmd_vel",Twist,queue_size=10)
 		
+		self.gripper_pub = rospy.Publisher("/rosaria/gripper",Int16,queue_size=10)
+		rospy.sleep(3)
+		self.gripper_pub.publish(data=2)
+		self.gripper_pub.publish(data=5)
+		
 		self.sysArray_sub = rospy.Subscriber("sysArray",Float32MultiArray,self.sysCallback)
 		
 		self.sysArray=0
 		
 		self.prevV = 0.0884
 		
+
+		
 		
 	def doneCallback(self,done):
 		if done:
-			rospy.sleep(0.1)
 			pub = Twist()
 			pub.linear.x = 0
 			pub.angular.z = 0
 			self.cmd_vel_pub.publish(pub)
 			rospy.sleep(0.1)
-			gc = GripperControl()
-			gc.raise_lift()
-	
+			self.gripper_pub.publish(data=4)
+			self.gripper_pub.publish(data=1)
+			rospy.signal_shutdown("done")	
 	def sysCallback(self,array):
 		self.sysArray = array.data
 		
@@ -80,14 +86,16 @@ class systemInput:
 				u2 = 0
 			a = u1*cos + u2*sin
 	
-			if -0.0884<v<0.0884:
-				v = 0.0884
-			w = -u1*sin/v + u2*cos/v
+			if -0.01<v<0.01:
+				w = 0
+			else:
+				w = -u1*sin/v + u2*cos/v
 		
 			#print('===4. [a,w]===')
 			#print([a,w])
 			v = a*0.5 + self.prevV
-		
+			if v<0:
+				v=0
 			if v>1.4:
 				v=1.4
 			self.prevV = v
